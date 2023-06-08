@@ -23,8 +23,17 @@ This project contains automated tests using Cypress for https://demo.casino/. It
 3. To run the tests in headless mode using the Chrome browser: ```npm run test:headless:chrome```
 
 ### Note:
-1. If you want to run the first test from the command line using the npx cypress run command, be aware that the test will fail. This is because when clicking the registration button, a captcha appears, and it cannot be automatically resolved when executed from the command line.
 
-2. Since the first test cannot be completed, the second test will also fail. This is because the second test relies on having a registered user to perform the account top-up test.
+### Initial Test Execution
+When running the tests for the first time, it is highly recommended to use the Cypress graphical interface. This is because when attempting to register a new user or log in, the website may present a captcha challenge as a security measure. This could cause the test to fail if executed from the command line.
 
-3. To resolve this issue, you need to run the first test using the Cypress user interface (Cypress UI). This way, you can manually complete the captcha and successfully register a user. Once you have successfully completed the first test, the second test can be executed without any issues as it will have a registered user available.
+Executing the tests through the Cypress graphical interface allows manual interaction with the captcha challenge, enabling successful completion. Once the initial execution is completed and a user has been registered or logged in successfully, this captcha challenge will no longer be encountered in subsequent test runs.
+
+
+### Subsequent Test Execution
+
+After the initial setup and successful registration or login, the tests can be executed from both the command line and the Cypress graphical interface. There will be no need to face the captcha challenge again, enabling automated test execution in continuous integration environments or pipelines.
+
+It is important to note that if significant changes are made to the website or its functionalities that affect the registration or login process, it may be necessary to repeat the initial execution process using the graphical interface to overcome any new security challenges.
+
+Considering these factors during test execution will ensure consistent results and avoid unexpected interruptions during the automation process.
